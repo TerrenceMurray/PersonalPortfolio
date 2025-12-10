@@ -12,11 +12,18 @@ import './styles/globals.css';
 
 export default function App() {
   return (
-    <div className="min-h-screen cursor-none">
+    <div className="min-h-screen lg:cursor-none">
+      {/* Skip link for keyboard navigation - accessibility */}
+      <a
+        href="#main-content"
+        className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden focus:static focus:w-auto focus:h-auto focus:overflow-visible focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[var(--color-luxury-black)] focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-rich-brown)]"
+      >
+        Skip to main content
+      </a>
       <CustomCursor />
       <ScrollProgress />
       <Navigation />
-      <main>
+      <main id="main-content" role="main">
         <Hero />
         <About />
         <Experience />

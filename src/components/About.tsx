@@ -1,13 +1,13 @@
-import { Download, Code2, Zap, Palette } from 'lucide-react';
+import { Download, Code2, Zap, Palette, Wrench } from 'lucide-react';
 import { SectionDivider } from './SectionDivider';
 import { AnimatedSection } from './AnimatedSection';
 import { AnimatedCounter } from './AnimatedCounter';
 
-export function About() {
-  const handleDownloadCV = () => {
-    // TODO: Replace with actual CV file path when available
-    // For now, this opens a placeholder - update the href to your actual CV
-    const cvUrl = '/cv.pdf';
+export function About ()
+{
+  const handleDownloadCV = () =>
+  {
+    const cvUrl = '/TerrenceMurray-SoftwareEngineer.pdf';
     window.open(cvUrl, '_blank');
   };
 
@@ -32,38 +32,38 @@ export function About() {
               </div>
               <div className="space-y-4 sm:space-y-5 lg:space-y-6">
                 <p>
-                  I'm a passionate software developer with a keen eye for detail and a commitment to excellence. My approach combines technical expertise with creative problem-solving to deliver solutions that make a difference.
+                  Fullstack Software Engineer and final-year Computer Science student at the University of the West Indies. I'm experienced in building scalable web applications with React, Next.js, Nest.js, and Go.
                 </p>
                 <p>
-                  With experience across the full stack, I specialize in creating seamless user experiences backed by robust, scalable architectures. I believe in writing code that's not just functional, but elegant and maintainable.
+                  Skilled in Dockerized deployments, clean architecture, and UI component design with Storybook and Figma. I focus on creating performant, accessible interfaces backed by robust backend systems.
                 </p>
                 <p>
-                  When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, and staying at the forefront of industry trends.
+                  Adept at collaborating in agile teams to deliver user-focused digital experiences. I'm passionate about writing clean, maintainable code and staying current with modern development practices.
                 </p>
               </div>
-              
+
               {/* Stats */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-5 xl:gap-6 pt-4 sm:pt-6 lg:pt-8">
                 <div className="text-center p-3 sm:p-4 lg:p-5 bg-white/60 backdrop-blur-md border border-white/40 rounded-lg">
                   <div className="text-xl sm:text-2xl lg:text-3xl text-[var(--color-rich-brown)] mb-1 sm:mb-2">
-                    <AnimatedCounter value={5} suffix="+" />
+                    <AnimatedCounter value={2} suffix="+" />
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600">Years Exp.</div>
                 </div>
                 <div className="text-center p-3 sm:p-4 lg:p-5 bg-white/60 backdrop-blur-md border border-white/40 rounded-lg">
                   <div className="text-xl sm:text-2xl lg:text-3xl text-[var(--color-rich-brown)] mb-1 sm:mb-2">
-                    <AnimatedCounter value={50} suffix="+" />
+                    <AnimatedCounter value={10} suffix="+" />
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600">Projects</div>
                 </div>
                 <div className="text-center p-3 sm:p-4 lg:p-5 bg-white/60 backdrop-blur-md border border-white/40 rounded-lg">
                   <div className="text-xl sm:text-2xl lg:text-3xl text-[var(--color-rich-brown)] mb-1 sm:mb-2">
-                    <AnimatedCounter value={20} suffix="+" />
+                    <AnimatedCounter value={5} suffix="+" />
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600">Clients</div>
                 </div>
               </div>
-              
+
               <button
                 onClick={handleDownloadCV}
                 className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 lg:py-4 bg-[var(--color-luxury-black)] hover:bg-[var(--color-rich-brown)] text-white transition-all duration-300 rounded-full hover:scale-105 text-sm sm:text-base"
@@ -83,14 +83,14 @@ export function About() {
                     <div className="p-1.5 sm:p-2 bg-[var(--color-rich-brown)]/10 rounded-lg">
                       <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-rich-brown)]" />
                     </div>
-                    <h4>Frontend Development</h4>
+                    <h4 className="font-semibold text-base sm:text-lg text-[var(--color-luxury-black)]">Frontend Development</h4>
                   </div>
                   <p className="text-sm leading-relaxed text-gray-700">
-                    React, TypeScript, Next.js, Tailwind CSS
+                    React, Next.js, TypeScript, Tailwind CSS, Vite
                   </p>
                 </div>
               </div>
-              
+
               <div className="group relative p-5 sm:p-6 lg:p-7 bg-white/60 backdrop-blur-md border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-[var(--color-rich-brown)]/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
@@ -98,14 +98,29 @@ export function About() {
                     <div className="p-1.5 sm:p-2 bg-[var(--color-rich-brown)]/10 rounded-lg">
                       <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-rich-brown)]" />
                     </div>
-                    <h4>Backend Development</h4>
+                    <h4 className="font-semibold text-base sm:text-lg text-[var(--color-luxury-black)]">Backend Development</h4>
                   </div>
                   <p className="text-sm leading-relaxed text-gray-700">
-                    Node.js, Python, PostgreSQL, APIs
+                    NestJS, Go, REST APIs, gRPC, Jest
                   </p>
                 </div>
               </div>
-              
+
+              <div className="group relative p-5 sm:p-6 lg:p-7 bg-white/60 backdrop-blur-md border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-[var(--color-rich-brown)]/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className="p-1.5 sm:p-2 bg-[var(--color-rich-brown)]/10 rounded-lg">
+                      <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-rich-brown)]" />
+                    </div>
+                    <h4 className="font-semibold text-base sm:text-lg text-[var(--color-luxury-black)]">DevOps & Testing</h4>
+                  </div>
+                  <p className="text-sm leading-relaxed text-gray-700">
+                    Docker, Docker Compose, Jest, Storybook, Postman
+                  </p>
+                </div>
+              </div>
+
               <div className="group relative p-5 sm:p-6 lg:p-7 bg-white/60 backdrop-blur-md border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-[var(--color-rich-brown)]/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
@@ -113,10 +128,10 @@ export function About() {
                     <div className="p-1.5 sm:p-2 bg-[var(--color-rich-brown)]/10 rounded-lg">
                       <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--color-rich-brown)]" />
                     </div>
-                    <h4>Tools & Methods</h4>
+                    <h4 className="font-semibold text-base sm:text-lg text-[var(--color-luxury-black)]">Design Tools</h4>
                   </div>
                   <p className="text-sm leading-relaxed text-gray-700">
-                    Git, Docker, CI/CD, Agile Development
+                    Figma, Adobe XD, Adobe Photoshop
                   </p>
                 </div>
               </div>
@@ -124,7 +139,7 @@ export function About() {
           </div>
         </AnimatedSection>
       </div>
-      
+
       <SectionDivider />
     </section>
   );

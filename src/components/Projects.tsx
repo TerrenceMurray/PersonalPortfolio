@@ -83,9 +83,13 @@ export function Projects() {
           {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 auto-rows-[340px] sm:auto-rows-[360px] lg:auto-rows-[380px]">
             {/* Project 1 - Large featured (spans 2 columns, 2 rows) */}
-            <div
+            <article
               onClick={() => handleProjectClick(projects[0].link)}
-              className="group cursor-pointer relative md:col-span-2 md:row-span-2 border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-md rounded-xl overflow-hidden"
+              onKeyDown={(e) => e.key === 'Enter' && handleProjectClick(projects[0].link)}
+              role="button"
+              tabIndex={0}
+              aria-label={`View project: ${projects[0].title}`}
+              className="group cursor-pointer relative md:col-span-2 md:row-span-2 border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-md rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-rich-brown)] focus:ring-offset-2"
             >
               <div className="relative h-full flex flex-col">
                 {/* Image */}
@@ -139,12 +143,16 @@ export function Projects() {
                 {/* Decorative element */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[var(--color-rich-brown)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-            </div>
+            </article>
 
             {/* Project 2 - Medium featured (spans 1 column, 2 rows) */}
-            <div
+            <article
               onClick={() => handleProjectClick(projects[1].link)}
-              className="group cursor-pointer relative md:row-span-2 border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-md rounded-xl overflow-hidden"
+              onKeyDown={(e) => e.key === 'Enter' && handleProjectClick(projects[1].link)}
+              role="button"
+              tabIndex={0}
+              aria-label={`View project: ${projects[1].title}`}
+              className="group cursor-pointer relative md:row-span-2 border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-md rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-rich-brown)] focus:ring-offset-2"
             >
               <div className="relative h-full flex flex-col">
                 <div className="relative h-2/5 overflow-hidden">
@@ -195,14 +203,18 @@ export function Projects() {
                 
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[var(--color-rich-brown)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-            </div>
+            </article>
 
             {/* Projects 3, 4, 5 - Small cards */}
             {projects.slice(2).map((project) => (
-              <div
+              <article
                 key={project.id}
                 onClick={() => handleProjectClick(project.link)}
-                className="group cursor-pointer relative border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-md rounded-xl overflow-hidden h-[380px]"
+                onKeyDown={(e) => e.key === 'Enter' && handleProjectClick(project.link)}
+                role="button"
+                tabIndex={0}
+                aria-label={`View project: ${project.title}`}
+                className="group cursor-pointer relative border border-white/40 hover:border-[var(--color-rich-brown)]/40 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-md rounded-xl overflow-hidden h-[380px] focus:outline-none focus:ring-2 focus:ring-[var(--color-rich-brown)] focus:ring-offset-2"
               >
                 <div className="relative h-full flex flex-col">
                   <div className="relative flex-shrink-0 h-[160px] overflow-hidden">
@@ -247,7 +259,7 @@ export function Projects() {
                   
                   <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[var(--color-rich-brown)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </AnimatedSection>
