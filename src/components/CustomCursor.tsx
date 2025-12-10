@@ -4,26 +4,41 @@ import { motion } from 'motion/react';
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile/touch
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 1024px)').matches || 'ontouchstart' in window);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      
+
       // Check if hovering over clickable elements
       const target = e.target as HTMLElement;
-      const isClickable = 
+      const isClickable =
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         target.closest('a') !== null ||
         target.closest('button') !== null ||
         window.getComputedStyle(target).cursor === 'pointer';
-      
+
       setIsPointer(isClickable);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
+
+  // Don't render custom cursor on mobile/touch devices
+  if (isMobile) return null;
 
   return (
     <>

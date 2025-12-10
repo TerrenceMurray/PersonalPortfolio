@@ -12,7 +12,7 @@ import './styles/globals.css';
 
 export default function App() {
   return (
-    <div className="min-h-screen cursor-none">
+    <div className="min-h-screen lg:cursor-none">
       <CustomCursor />
       <ScrollProgress />
       <Navigation />
