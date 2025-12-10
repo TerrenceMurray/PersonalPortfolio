@@ -16,7 +16,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm">
+          <nav aria-label="Footer navigation" className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm">
             <a
               href="#about"
               className="text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors duration-300 relative group"
@@ -45,12 +45,12 @@ export function Footer() {
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-[var(--color-rich-brown)] group-hover:w-full transition-all duration-300"></span>
             </a>
-          </div>
+          </nav>
         </div>
 
         <div className="mt-5 sm:mt-6 lg:mt-8 pt-5 sm:pt-6 lg:pt-8 border-t border-gray-200 text-center">
           <p className="text-gray-500 text-xs flex items-center justify-center gap-2">
-            Designed & Built with <Heart className="w-3 h-3 text-[var(--color-rich-brown)] fill-[var(--color-rich-brown)] animate-pulse" /> and attention to detail
+            Designed & Built with <Heart className="w-3 h-3 text-[var(--color-rich-brown)] fill-[var(--color-rich-brown)] animate-pulse" aria-hidden="true" /><span className="sr-only">love</span> and attention to detail
           </p>
         </div>
       </div>

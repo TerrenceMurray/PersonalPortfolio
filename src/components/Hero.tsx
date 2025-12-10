@@ -54,7 +54,7 @@ export function Hero ()
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Software Developer
+              Fullstack Software Engineer
             </motion.p>
             <h1 className="leading-tight overflow-hidden">
               <motion.span
@@ -84,7 +84,7 @@ export function Hero ()
                 >
                   <motion.path
                     d="M2 8C52 3 102 6 152 4C202 2 252 7 298 5"
-                    stroke="var[var(--color-rich-brown)]"
+                    stroke="var(--color-rich-brown)"
                     strokeWidth="2.5"
                     strokeLinecap="round"
                   />
@@ -98,7 +98,7 @@ export function Hero ()
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            Transforming ideas into elegant, functional solutions through clean code and thoughtful design.
+            Building scalable web applications with React, Next.js, and Go. Delivering performant, user-focused digital experiences.
           </motion.p>
           <motion.div
             className="pt-2"
@@ -131,8 +131,11 @@ export function Hero ()
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={profileImage}
-                alt="Profile"
+                alt="Terrence Murray - Software Developer"
                 className="w-full h-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
 
@@ -151,7 +154,7 @@ export function Hero ()
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-xs sm:text-sm text-gray-700">San Francisco, CA</span>
+                <span className="text-xs sm:text-sm text-gray-700">Trinidad and Tobago</span>
               </div>
             </div>
           </div>

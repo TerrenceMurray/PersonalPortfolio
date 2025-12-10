@@ -75,7 +75,7 @@ export function Navigation ()
       {/* Desktop Vertical Navigation - Left Side */}
       <div className="hidden lg:block fixed left-0 right-0 top-[35%] -translate-y-1/2 z-50 pointer-events-none">
         <div className="max-w-6xl mx-auto px-6 lg:px-8 xl:px-6 relative">
-          <nav className="absolute left-0 lg:left-2 xl:-left-32 pointer-events-auto">
+          <nav className="absolute left-0 lg:left-2 xl:-left-32 pointer-events-auto" aria-label="Main navigation">
             <div className="flex flex-col gap-10">
               {navItems.map((item) =>
               {
@@ -86,6 +86,8 @@ export function Navigation ()
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
+                    aria-label={`Navigate to ${item.label} section`}
+                    aria-current={isActive ? 'true' : undefined}
                     className={`group flex items-center gap-4 transition-all duration-300 ${isActive ? 'translate-x-0' : 'hover:translate-x-2'
                       }`}
                   >
@@ -139,12 +141,13 @@ export function Navigation ()
       </div>
 
       {/* Mobile Navigation - Top */}
-      <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+      <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200" aria-label="Mobile navigation">
         <div className="max-w-6xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors tracking-wider text-sm"
+              aria-label="Scroll to top"
             >
               PORTFOLIO
             </button>
@@ -152,7 +155,9 @@ export function Navigation ()
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="relative w-10 h-10 flex items-center justify-center group"
-              aria-label="Toggle menu"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               <div className="relative w-6 h-5 flex flex-col justify-center gap-1.5">
                 <span
@@ -172,8 +177,8 @@ export function Navigation ()
           </div>
 
           {isMobileMenuOpen && (
-            <div className="pt-6 pb-4 border-t border-gray-200 mt-5 animate-in fade-in slide-in-from-top-2 duration-300">
-              <div className="flex flex-col gap-4">
+            <div id="mobile-menu" className="pt-6 pb-4 border-t border-gray-200 mt-5 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex flex-col gap-4" role="menu">
                 <button
                   onClick={() => scrollToSection('about')}
                   className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'about' ? 'text-[var(--color-rich-brown)]' : ''
