@@ -1,4 +1,4 @@
-import { ExternalLink, Folder, Sparkles } from 'lucide-react';
+import { ExternalLink, Sparkles } from 'lucide-react';
 import { SectionDivider } from './SectionDivider';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedSection } from './AnimatedSection';
@@ -53,32 +53,9 @@ const projects = [
 
 export function Projects() {
   const handleProjectClick = (link: string) => {
-    // In a real application, this would navigate to the project detail page
-    console.log('Navigate to:', link);
-    alert(`This would navigate to: ${link}`);
-  };
-
-  const renderTags = (tags: string[], maxVisible: number = 3) => {
-    const visibleTags = tags.slice(0, maxVisible);
-    const remainingCount = tags.length - maxVisible;
-
-    return (
-      <div className="flex flex-wrap gap-2">
-        {visibleTags.map((tag, index) => (
-          <span
-            key={index}
-            className="px-2.5 sm:px-3 py-1 text-xs bg-[var(--color-rich-brown)]/10 text-[var(--color-rich-brown)] border border-[var(--color-rich-brown)]/30 rounded-full hover:bg-[var(--color-rich-brown)]/20 transition-colors"
-          >
-            {tag}
-          </span>
-        ))}
-        {remainingCount > 0 && (
-          <span className="px-2.5 sm:px-3 py-1 text-xs bg-[var(--color-luxury-black)]/10 text-[var(--color-luxury-black)] border border-[var(--color-luxury-black)]/30 rounded-full">
-            +{remainingCount}
-          </span>
-        )}
-      </div>
-    );
+    // Navigate to external project page or internal route
+    // For external links, use window.open; for internal routes, integrate with your router
+    window.open(link, '_blank');
   };
 
   return (

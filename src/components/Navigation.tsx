@@ -1,30 +1,33 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
-export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
+export function Navigation ()
+{
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
+  useEffect(() =>
+  {
+    const handleScroll = () =>
+    {
       // Detect active section
       const sections = ['hero', 'about', 'experience', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 200;
-      
+
       // Check if we're at the top (hero section)
-      if (window.scrollY < 100) {
+      if (window.scrollY < 100)
+      {
         setActiveSection('hero');
         return;
       }
-      
-      for (const section of sections) {
+
+      for (const section of sections)
+      {
         const element = document.getElementById(section);
-        if (element) {
+        if (element)
+        {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight)
+          {
             setActiveSection(section);
             break;
           }
@@ -37,10 +40,13 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    if (sectionId === 'hero') {
+  const scrollToSection = (sectionId: string) =>
+  {
+    if (sectionId === 'hero')
+    {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
+    } else
+    {
       const element = document.getElementById(sectionId);
       element?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -55,7 +61,8 @@ export function Navigation() {
   ];
 
   // Get the next section index
-  const getNextSectionId = () => {
+  const getNextSectionId = () =>
+  {
     const currentIndex = navItems.findIndex(item => item.id === activeSection);
     if (currentIndex === -1 || currentIndex === navItems.length - 1) return null;
     return navItems[currentIndex + 1].id;
@@ -70,40 +77,38 @@ export function Navigation() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8 xl:px-6 relative">
           <nav className="absolute left-0 lg:left-2 xl:-left-32 pointer-events-auto">
             <div className="flex flex-col gap-10">
-              {navItems.map((item) => {
+              {navItems.map((item) =>
+              {
                 const isActive = activeSection === item.id;
                 const isNext = nextSectionId === item.id;
-                
+
                 return (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`group flex items-center gap-4 transition-all duration-300 ${
-                      isActive ? 'translate-x-0' : 'hover:translate-x-2'
-                    }`}
+                    className={`group flex items-center gap-4 transition-all duration-300 ${isActive ? 'translate-x-0' : 'hover:translate-x-2'
+                      }`}
                   >
                     {/* Number and dot indicator */}
                     <div className="flex items-center gap-3">
                       <span
-                        className={`text-xs transition-all duration-300 ${
-                          isActive
+                        className={`text-xs transition-all duration-300 ${isActive
                             ? 'text-[var(--color-rich-brown)] opacity-100'
                             : isNext
-                            ? 'text-[var(--color-rich-brown)] opacity-40'
-                            : 'text-gray-400 opacity-60 group-hover:opacity-100 group-hover:text-[var(--color-rich-brown)]'
-                        }`}
+                              ? 'text-[var(--color-rich-brown)] opacity-40'
+                              : 'text-gray-400 opacity-60 group-hover:opacity-100 group-hover:text-[var(--color-rich-brown)]'
+                          }`}
                       >
                         {item.number}
                       </span>
                       <div className="relative">
                         <div
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            isActive
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive
                               ? 'bg-[var(--color-rich-brown)] scale-150'
                               : isNext
-                              ? 'bg-[var(--color-rich-brown)] scale-110 opacity-50'
-                              : 'bg-gray-400 group-hover:bg-[var(--color-rich-brown)] group-hover:scale-125'
-                          }`}
+                                ? 'bg-[var(--color-rich-brown)] scale-110 opacity-50'
+                                : 'bg-gray-400 group-hover:bg-[var(--color-rich-brown)] group-hover:scale-125'
+                            }`}
                         />
                         {isActive && (
                           <div className="absolute inset-0 w-2 h-2 bg-[var(--color-rich-brown)] rounded-full animate-ping opacity-75"></div>
@@ -113,16 +118,15 @@ export function Navigation() {
                         )}
                       </div>
                     </div>
-                    
+
                     {/* Label that appears on hover or when active */}
                     <span
-                      className={`text-sm whitespace-nowrap transition-all duration-300 ${
-                        isActive
+                      className={`text-sm whitespace-nowrap transition-all duration-300 ${isActive
                           ? 'opacity-100 translate-x-0 text-[var(--color-rich-brown)]'
                           : isNext
-                          ? 'opacity-40 translate-x-0 text-[var(--color-rich-brown)]'
-                          : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 text-gray-600'
-                      }`}
+                            ? 'opacity-40 translate-x-0 text-[var(--color-rich-brown)]'
+                            : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 text-gray-600'
+                        }`}
                     >
                       {item.label}
                     </span>
@@ -152,19 +156,16 @@ export function Navigation() {
             >
               <div className="relative w-6 h-5 flex flex-col justify-center gap-1.5">
                 <span
-                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${
-                    isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-                  }`}
+                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                    }`}
                 />
                 <span
-                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 ${
-                    isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-                  }`}
+                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+                    }`}
                 />
                 <span
-                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${
-                    isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-                  }`}
+                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                    }`}
                 />
               </div>
             </button>
@@ -175,27 +176,24 @@ export function Navigation() {
               <div className="flex flex-col gap-4">
                 <button
                   onClick={() => scrollToSection('about')}
-                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${
-                    activeSection === 'about' ? 'text-[var(--color-rich-brown)]' : ''
-                  }`}
+                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'about' ? 'text-[var(--color-rich-brown)]' : ''
+                    }`}
                 >
                   <span className="text-xs text-gray-400">01</span>
                   <span>About</span>
                 </button>
                 <button
                   onClick={() => scrollToSection('experience')}
-                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${
-                    activeSection === 'experience' ? 'text-[var(--color-rich-brown)]' : ''
-                  }`}
+                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'experience' ? 'text-[var(--color-rich-brown)]' : ''
+                    }`}
                 >
                   <span className="text-xs text-gray-400">02</span>
                   <span>Experience</span>
                 </button>
                 <button
                   onClick={() => scrollToSection('projects')}
-                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${
-                    activeSection === 'projects' ? 'text-[var(--color-rich-brown)]' : ''
-                  }`}
+                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'projects' ? 'text-[var(--color-rich-brown)]' : ''
+                    }`}
                 >
                   <span className="text-xs text-gray-400">03</span>
                   <span>Projects</span>

@@ -1,9 +1,10 @@
-import profileImage from 'figma:asset/874cc9235308d579c0bcd4899d6c05312faece87.png';
+import profileImage from '@/assets/portfolio-image.jpg';
 import { ArrowDown } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
-export function Hero() {
+export function Hero ()
+{
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -13,16 +14,17 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-  const scrollToContact = () => {
+  const scrollToContact = () =>
+  {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section ref={ref} id="hero" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-16 sm:py-20 lg:py-24 relative bg-white overflow-hidden">
       {/* Forest-inspired background with parallax */}
-      <motion.div 
-        className="absolute inset-0 opacity-[0.04]" 
-        style={{ 
+      <motion.div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
           y,
           backgroundImage: 'url(https://images.unsplash.com/photo-1744040982238-01c12ad531ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaXN0eSUyMGZvcmVzdCUyMG5hdHVyZXxlbnwxfHx8fDE3NjUzMTA1NDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)',
           backgroundSize: 'cover',
@@ -31,7 +33,7 @@ export function Hero() {
       ></motion.div>
 
       {/* Decorative top element - with glassmorphism */}
-      <motion.div 
+      <motion.div
         className="absolute top-28 sm:top-24 lg:top-16 left-1/2 -translate-x-1/2 text-center z-10"
         style={{ opacity }}
       >
@@ -46,7 +48,7 @@ export function Hero() {
         {/* Text Content */}
         <div className="space-y-6 sm:space-y-8 lg:space-y-10 text-center md:text-left">
           <div className="space-y-3 sm:space-y-4 lg:space-y-5">
-            <motion.p 
+            <motion.p
               className="text-label"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -63,34 +65,34 @@ export function Hero() {
               >
                 Crafting Digital{' '}
               </motion.span>
-              <motion.span 
+              <motion.span
                 className="relative inline-block"
                 initial={{ y: '100%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 Experiences
-                <motion.svg 
-                  className="absolute -bottom-1 sm:-bottom-2 left-0 w-full" 
-                  viewBox="0 0 300 12" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg" 
+                <motion.svg
+                  className="absolute -bottom-1 sm:-bottom-2 left-0 w-full"
+                  viewBox="0 0 300 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                   preserveAspectRatio="none"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 0.4 }}
                   transition={{ duration: 1.5, delay: 1.2, ease: 'easeInOut' }}
                 >
-                  <motion.path 
-                    d="M2 8C52 3 102 6 152 4C202 2 252 7 298 5" 
-                    stroke="var(--color-rich-brown)" 
-                    strokeWidth="2.5" 
+                  <motion.path
+                    d="M2 8C52 3 102 6 152 4C202 2 252 7 298 5"
+                    stroke="var[var(--color-rich-brown)]"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                   />
                 </motion.svg>
               </motion.span>
             </h1>
           </div>
-          <motion.p 
+          <motion.p
             className="text-gray-600 max-w-lg leading-relaxed mx-auto md:mx-0 text-sm sm:text-base lg:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -98,7 +100,7 @@ export function Hero() {
           >
             Transforming ideas into elegant, functional solutions through clean code and thoughtful design.
           </motion.p>
-          <motion.div 
+          <motion.div
             className="pt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +117,7 @@ export function Hero() {
         </div>
 
         {/* Profile Image with Enhanced Design */}
-        <motion.div 
+        <motion.div
           className="relative order-first md:order-last"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -124,7 +126,7 @@ export function Hero() {
           <div className="relative aspect-square max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto md:mx-0 md:ml-auto">
             {/* Background outline */}
             <div className="absolute inset-0 -translate-x-3 -translate-y-3 sm:-translate-x-4 sm:-translate-y-4 lg:-translate-x-6 lg:-translate-y-6 bg-[var(--color-cream)] border border-gray-200 rounded-2xl"></div>
-            
+
             {/* Image container */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
@@ -133,7 +135,7 @@ export function Hero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Floating badge - availability - with glassmorphism */}
             <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 lg:-bottom-6 lg:-left-6 backdrop-blur-md bg-white/80 border border-white/60 rounded-xl px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 shadow-lg">
               <div className="flex items-center gap-1.5 sm:gap-2">

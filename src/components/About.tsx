@@ -2,13 +2,13 @@ import { Download, Code2, Zap, Palette } from 'lucide-react';
 import { SectionDivider } from './SectionDivider';
 import { AnimatedSection } from './AnimatedSection';
 import { AnimatedCounter } from './AnimatedCounter';
-import { SkillProgressBar } from './SkillProgressBar';
 
 export function About() {
   const handleDownloadCV = () => {
-    // In a real application, this would download the actual CV file
-    console.log('Download CV clicked');
-    alert('CV download functionality would be implemented here');
+    // TODO: Replace with actual CV file path when available
+    // For now, this opens a placeholder - update the href to your actual CV
+    const cvUrl = '/cv.pdf';
+    window.open(cvUrl, '_blank');
   };
 
   return (
