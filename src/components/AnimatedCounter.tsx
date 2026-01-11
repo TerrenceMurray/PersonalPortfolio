@@ -8,7 +8,7 @@ interface AnimatedCounterProps {
 
 export function AnimatedCounter({ value, suffix = '' }: AnimatedCounterProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   const spring = useSpring(0, {
     damping: 50,
