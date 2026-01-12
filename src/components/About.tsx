@@ -52,13 +52,13 @@ export function About ()
                 </div>
                 <div className="text-center p-3 sm:p-4 lg:p-5 bg-white/60 backdrop-blur-md border border-white/40 rounded-lg">
                   <div className="text-xl sm:text-2xl lg:text-3xl text-[var(--color-rich-brown)] mb-1 sm:mb-2">
-                    <AnimatedCounter value={10} suffix="+" />
+                    <AnimatedCounter value={5} suffix="+" />
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600">Projects</div>
                 </div>
                 <div className="text-center p-3 sm:p-4 lg:p-5 bg-white/60 backdrop-blur-md border border-white/40 rounded-lg">
                   <div className="text-xl sm:text-2xl lg:text-3xl text-[var(--color-rich-brown)] mb-1 sm:mb-2">
-                    <AnimatedCounter value={5} suffix="+" />
+                    <AnimatedCounter value={3} suffix="+" />
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600">Clients</div>
                 </div>
