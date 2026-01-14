@@ -39,7 +39,7 @@ export function Hero ()
       >
         <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur-sm bg-white/40 rounded-full border border-white/60">
           <div className="h-px w-6 sm:w-8 lg:w-12 bg-gradient-to-r from-transparent to-[var(--color-rich-brown)]"></div>
-          <span className="text-[10px] sm:text-xs tracking-[0.3em] text-gray-600 uppercase">Portfolio 2025</span>
+          <span className="text-[10px] sm:text-xs tracking-[0.3em] text-gray-600 uppercase">Portfolio {new Date().getFullYear()}</span>
           <div className="h-px w-6 sm:w-8 lg:w-12 bg-gradient-to-l from-transparent to-[var(--color-rich-brown)]"></div>
         </div>
       </motion.div>
