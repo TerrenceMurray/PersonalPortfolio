@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 
-export function Navigation()
+export function Navigation ()
 {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
-  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() =>
   {
     const handleScroll = () =>
     {
-      setScrolled(window.scrollY > 50);
-
+      // Detect active section
       const sections = ['hero', 'about', 'experience', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
+      // Check if we're at the top (hero section)
       if (window.scrollY < 100)
       {
         setActiveSection('hero');
@@ -37,7 +36,7 @@ export function Navigation()
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    handleScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -61,148 +60,160 @@ export function Navigation()
     { id: 'contact', label: 'Contact', number: '04' },
   ];
 
+  // Get the next section index
+  const getNextSectionId = () =>
+  {
+    const currentIndex = navItems.findIndex(item => item.id === activeSection);
+    if (currentIndex === -1 || currentIndex === navItems.length - 1) return null;
+    return navItems[currentIndex + 1].id;
+  };
+
+  const nextSectionId = getNextSectionId();
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/80 backdrop-blur-md border-b border-white/40 shadow-sm'
-          : 'bg-transparent'
-      }`}
-      aria-label="Main navigation"
-    >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
-          {/* Logo / Name */}
-          <button
-            onClick={() => scrollToSection('hero')}
-            className="group flex items-center gap-2 transition-colors duration-300"
-            aria-label="Scroll to top"
-          >
-            <span className={`text-sm font-medium tracking-widest transition-colors duration-300 ${
-              scrolled
-                ? 'text-[var(--color-luxury-black)] group-hover:text-[var(--color-rich-brown)]'
-                : 'text-[var(--color-luxury-black)] group-hover:text-[var(--color-rich-brown)]'
-            }`}>
-              TERRENCE
-            </span>
-            <span className={`hidden sm:inline text-xs tracking-wider transition-colors duration-300 ${
-              scrolled ? 'text-[var(--color-rich-brown)]' : 'text-[var(--color-rich-brown)]'
-            }`}>
-              MURRAY
-            </span>
-          </button>
-
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) =>
-            {
-              const isActive = activeSection === item.id;
-
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  aria-label={`Navigate to ${item.label} section`}
-                  aria-current={isActive ? 'true' : undefined}
-                  className="group relative px-4 py-2 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[10px] font-medium tabular-nums transition-colors duration-300 ${
-                      isActive
-                        ? 'text-[var(--color-rich-brown)]'
-                        : 'text-gray-300 group-hover:text-[var(--color-rich-brown)]'
-                    }`}>
-                      {item.number}
-                    </span>
-                    <span className={`text-sm transition-colors duration-300 ${
-                      isActive
-                        ? 'text-[var(--color-rich-brown)] font-medium'
-                        : 'text-gray-600 group-hover:text-[var(--color-luxury-black)]'
-                    }`}>
-                      {item.label}
-                    </span>
-                  </div>
-
-                  {/* Active underline indicator */}
-                  <div className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full transition-all duration-300 ${
-                    isActive
-                      ? 'bg-[var(--color-rich-brown)] scale-x-100'
-                      : 'bg-[var(--color-rich-brown)] scale-x-0 group-hover:scale-x-100'
-                  }`} />
-                </button>
-              );
-            })}
-
-            {/* CTA Button */}
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
-              className="ml-4 px-5 py-2 text-sm bg-[var(--color-luxury-black)] text-white rounded-full hover:bg-[var(--color-rich-brown)] transition-all duration-300 hover:scale-105"
-            >
-              Get in Touch
-            </a>
-          </div>
-
-          {/* Mobile Hamburger */}
-          <button
-            className="lg:hidden relative w-10 h-10 flex items-center justify-center"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            <div className="relative w-6 h-5 flex flex-col justify-center gap-1.5">
-              <span
-                className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${
-                  isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 ${
-                  isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${
-                  isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-                }`}
-              />
-            </div>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div id="mobile-menu" className="lg:hidden pt-4 pb-6 border-t border-gray-200/50 animate-in fade-in slide-in-from-top-2 duration-300">
-            <div className="flex flex-col gap-1" role="menu">
+    <>
+      {/* Desktop Vertical Navigation - Left Side */}
+      <div className="hidden lg:block fixed left-0 right-0 top-[35%] -translate-y-1/2 z-50 pointer-events-none">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 xl:px-6 relative">
+          <nav className="absolute left-0 lg:left-2 xl:-left-32 pointer-events-auto" aria-label="Main navigation">
+            <div className="flex flex-col gap-10">
               {navItems.map((item) =>
               {
                 const isActive = activeSection === item.id;
+                const isNext = nextSectionId === item.id;
+
                 return (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`text-left py-3 px-3 rounded-xl flex items-center gap-3 transition-all duration-300 ${
-                      isActive
-                        ? 'text-[var(--color-rich-brown)] bg-[var(--color-rich-brown)]/5'
-                        : 'text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] hover:bg-[var(--color-rich-brown)]/5'
-                    }`}
+                    aria-label={`Navigate to ${item.label} section`}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`group flex items-center gap-4 transition-all duration-300 ${isActive ? 'translate-x-0' : 'hover:translate-x-2'
+                      }`}
                   >
-                    <span className="text-xs text-gray-400">{item.number}</span>
-                    <span>{item.label}</span>
+                    {/* Number and dot indicator */}
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`text-xs transition-all duration-300 ${isActive
+                            ? 'text-[var(--color-rich-brown)] opacity-100'
+                            : isNext
+                              ? 'text-[var(--color-rich-brown)] opacity-40'
+                              : 'text-gray-400 opacity-60 group-hover:opacity-100 group-hover:text-[var(--color-rich-brown)]'
+                          }`}
+                      >
+                        {item.number}
+                      </span>
+                      <div className="relative">
+                        <div
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive
+                              ? 'bg-[var(--color-rich-brown)] scale-150'
+                              : isNext
+                                ? 'bg-[var(--color-rich-brown)] scale-110 opacity-50'
+                                : 'bg-gray-400 group-hover:bg-[var(--color-rich-brown)] group-hover:scale-125'
+                            }`}
+                        />
+                        {isActive && (
+                          <div className="absolute inset-0 w-2 h-2 bg-[var(--color-rich-brown)] rounded-full animate-ping opacity-75"></div>
+                        )}
+                        {isNext && (
+                          <div className="absolute inset-0 w-2 h-2 bg-[var(--color-rich-brown)] rounded-full animate-pulse opacity-30"></div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Label that appears on hover or when active */}
+                    <span
+                      className={`text-sm whitespace-nowrap transition-all duration-300 ${isActive
+                          ? 'opacity-100 translate-x-0 text-[var(--color-rich-brown)]'
+                          : isNext
+                            ? 'opacity-40 translate-x-0 text-[var(--color-rich-brown)]'
+                            : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 text-gray-600'
+                        }`}
+                    >
+                      {item.label}
+                    </span>
                   </button>
                 );
               })}
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="mt-3 px-6 py-3 bg-[var(--color-luxury-black)] text-white hover:bg-[var(--color-rich-brown)] transition-all duration-300 rounded-full text-center text-sm"
-              >
-                Get in Touch
-              </button>
             </div>
-          </div>
-        )}
+          </nav>
+        </div>
       </div>
-    </nav>
+
+      {/* Mobile Navigation - Top */}
+      <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200" aria-label="Mobile navigation">
+        <div className="max-w-6xl mx-auto px-6 py-5">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors tracking-wider text-sm"
+              aria-label="Scroll to top"
+            >
+              PORTFOLIO
+            </button>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="relative w-10 h-10 flex items-center justify-center group"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <div className="relative w-6 h-5 flex flex-col justify-center gap-1.5">
+                <span
+                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                    }`}
+                />
+                <span
+                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+                    }`}
+                />
+                <span
+                  className={`block h-0.5 w-full bg-[var(--color-luxury-black)] transition-all duration-300 origin-center ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                    }`}
+                />
+              </div>
+            </button>
+          </div>
+
+          {isMobileMenuOpen && (
+            <div id="mobile-menu" className="pt-6 pb-4 border-t border-gray-200 mt-5 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex flex-col gap-4" role="menu">
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'about' ? 'text-[var(--color-rich-brown)]' : ''
+                    }`}
+                >
+                  <span className="text-xs text-gray-400">01</span>
+                  <span>About</span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('experience')}
+                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'experience' ? 'text-[var(--color-rich-brown)]' : ''
+                    }`}
+                >
+                  <span className="text-xs text-gray-400">02</span>
+                  <span>Experience</span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('projects')}
+                  className={`text-[var(--color-luxury-black)] hover:text-[var(--color-rich-brown)] transition-colors text-left py-2 flex items-center gap-3 ${activeSection === 'projects' ? 'text-[var(--color-rich-brown)]' : ''
+                    }`}
+                >
+                  <span className="text-xs text-gray-400">03</span>
+                  <span>Projects</span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="px-6 py-3 border-2 border-[var(--color-luxury-black)] hover:bg-[var(--color-luxury-black)] hover:text-white transition-all duration-300 rounded-full text-center mt-2"
+                >
+                  Contact
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    </>
   );
 }
